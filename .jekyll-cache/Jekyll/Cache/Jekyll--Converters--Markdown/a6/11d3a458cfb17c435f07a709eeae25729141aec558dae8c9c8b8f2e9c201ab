@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="ko" /><updated>2022-02-20T09:20:05+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Star-sil’s Blog</title><subtitle>Your Site Description
-</subtitle><author><name>star-sil</name><email>kimse9811@naver.com</email></author><entry><title type="html">[BOJ] 알파벳(1987)</title><link href="http://localhost:4000/2022/02/20/BOJ1987_%EC%95%8C%ED%8C%8C%EB%B2%B3.html" rel="alternate" type="text/html" title="[BOJ] 알파벳(1987)" /><published>2022-02-20T00:00:00+00:00</published><updated>2022-02-20T00:00:00+00:00</updated><id>http://localhost:4000/2022/02/20/BOJ1987_%EC%95%8C%ED%8C%8C%EB%B2%B3</id><content type="html" xml:base="http://localhost:4000/2022/02/20/BOJ1987_%EC%95%8C%ED%8C%8C%EB%B2%B3.html"><![CDATA[<h2 id="문제">문제</h2>
+I"&<h2 id="문제">문제</h2>
 
 <p><a href="https://www.acmicpc.net/problem/1986">BOJ_1987 알파벳</a><br /></p>
 
@@ -51,14 +50,5 @@
 
     <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">result</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div></div>]]></content><author><name>star-sil</name><email>kimse9811@naver.com</email></author><category term="BOJ" /><summary type="html"><![CDATA[문제 BOJ_1987 알파벳 문제 설명 알파벳으로 이루어진 행렬이 주어지고 말은 상하좌우로 움직일 수 있는데 알파벳은 한번만 지나갈 수 있다. 알파벳을 한번씩 밟으면서 최대로 몇칸 지날 수 있는지 알아내면 된다. 문제 해결 방문한 즉시 방문했다고 처리하면 추후에 다른 노드들이 방문을 못함 -&gt; 해당 노드만 방문했다고 처리하기 위해 다음 방문을 하려하기 전에 방문했다고 처리하고 다시 방문을 안했다고 설정한다.. graph는 전역 변수 이므로 모든 노드들이 방문여부를 공유한다. 따라서 하나의 노드가 방문해서 방문 처리를하면 다른 노드는 방문을 안했어도 해당 좌표에 방문을 한 것으로 된다. 소스 코드 #include &lt;iostream&gt; using namespace std; int R,C,result; char graph[20][20]; bool visited[26]; void dfs(int x, int y, int cnt){ int index = graph[x][y] - 'A'; result = (cnt &gt; result) ? cnt : result; if(x &lt; R &amp;&amp; x &gt;= 0 &amp;&amp; y &lt; C &amp;&amp; y &gt;= 0 &amp;&amp; !visited[index] &amp;&amp; graph[x][y] != 0){ cnt++; visited[index] = true; dfs(x+1,y,cnt); dfs(x,y+1, cnt); dfs(x-1,y, cnt); dfs(x,y-1,cnt); visited[index] = false; } } int main(){ std::ios::sync_with_stdio(false); cin.tie(0); cin &gt;&gt; R &gt;&gt; C; for(int i = 0; i &lt; R; ++i){ for(int j = 0; j &lt; C; ++j){ cin &gt;&gt; graph[i][j]; } } dfs(0,0,0); cout &lt;&lt; result; }]]></summary></entry><entry><title type="html">Welcome</title><link href="http://localhost:4000/2018/07/01/welcome.html" rel="alternate" type="text/html" title="Welcome" /><published>2018-07-01T00:00:00+00:00</published><updated>2018-07-01T00:00:00+00:00</updated><id>http://localhost:4000/2018/07/01/welcome</id><content type="html" xml:base="http://localhost:4000/2018/07/01/welcome.html"><![CDATA[<p>If you see this page, that means you have setup your site. enjoy! :ghost: :ghost: :ghost:</p>
-
-<p>You may want to <a href="https://tianqi.name/jekyll-TeXt-theme/docs/en/configuration">config the site</a> or <a href="https://tianqi.name/jekyll-TeXt-theme/docs/en/writing-posts">writing a post</a> next. Please feel free to <a href="https://github.com/kitian616/jekyll-TeXt-theme/issues">create an issue</a> or <a href="mailto:kitian616@outlook.com">send me email</a> if you have any questions.</p>
-
-<!--more-->
-
-<hr />
-
-<p>If you like TeXt, don’t forget to give me a star. :star2:</p>
-
-<p><a href="https://github.com/kitian616/jekyll-TeXt-theme/"><img src="https://img.shields.io/github/stars/kitian616/jekyll-TeXt-theme.svg?label=Stars&amp;style=social" alt="Star This Project" /></a></p>]]></content><author><name>star-sil</name><email>kimse9811@naver.com</email></author><category term="TeXt" /><summary type="html"><![CDATA[If you see this page, that means you have setup your site. enjoy! :ghost: :ghost: :ghost: You may want to config the site or writing a post next. Please feel free to create an issue or send me email if you have any questions.]]></summary></entry></feed>
+</code></pre></div></div>
+:ET
