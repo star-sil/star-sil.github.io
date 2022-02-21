@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="ko" /><updated>2022-02-21T12:06:20+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Star-sil’s Blog</title><subtitle>Your Site Description
-</subtitle><author><name>star-sil</name><email>kimse9811@naver.com</email></author><entry><title type="html">[BOJ] 알파벳(1987)</title><link href="http://localhost:4000/2022/02/20/BOJ1987_%EC%95%8C%ED%8C%8C%EB%B2%B3.html" rel="alternate" type="text/html" title="[BOJ] 알파벳(1987)" /><published>2022-02-20T00:00:00+00:00</published><updated>2022-02-20T00:00:00+00:00</updated><id>http://localhost:4000/2022/02/20/BOJ1987_%EC%95%8C%ED%8C%8C%EB%B2%B3</id><content type="html" xml:base="http://localhost:4000/2022/02/20/BOJ1987_%EC%95%8C%ED%8C%8C%EB%B2%B3.html"><![CDATA[<h2 id="문제">문제</h2>
+I"�<h2 id="boj-1987_알파벳-c-dfsbfs">[BOJ] 1987_알파벳 C++ DFS/BFS</h2>
+
+<h2 id="문제">문제</h2>
 
 <p><a href="https://www.acmicpc.net/problem/1986">BOJ_1987 알파벳</a><br /></p>
 
@@ -54,14 +55,5 @@
 
     <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">result</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div></div>]]></content><author><name>star-sil</name><email>kimse9811@naver.com</email></author><category term="BOJ" /><category term="DFS/BFS" /><summary type="html"><![CDATA[문제 BOJ_1987 알파벳]]></summary></entry><entry><title type="html">Welcome</title><link href="http://localhost:4000/2018/07/01/welcome.html" rel="alternate" type="text/html" title="Welcome" /><published>2018-07-01T00:00:00+00:00</published><updated>2018-07-01T00:00:00+00:00</updated><id>http://localhost:4000/2018/07/01/welcome</id><content type="html" xml:base="http://localhost:4000/2018/07/01/welcome.html"><![CDATA[<p>If you see this page, that means you have setup your site. enjoy! :ghost: :ghost: :ghost:</p>
-
-<p>You may want to <a href="https://tianqi.name/jekyll-TeXt-theme/docs/en/configuration">config the site</a> or <a href="https://tianqi.name/jekyll-TeXt-theme/docs/en/writing-posts">writing a post</a> next. Please feel free to <a href="https://github.com/kitian616/jekyll-TeXt-theme/issues">create an issue</a> or <a href="mailto:kitian616@outlook.com">send me email</a> if you have any questions.</p>
-
-<!--more-->
-
-<hr />
-
-<p>If you like TeXt, don’t forget to give me a star. :star2:</p>
-
-<p><a href="https://github.com/kitian616/jekyll-TeXt-theme/"><img src="https://img.shields.io/github/stars/kitian616/jekyll-TeXt-theme.svg?label=Stars&amp;style=social" alt="Star This Project" /></a></p>]]></content><author><name>star-sil</name><email>kimse9811@naver.com</email></author><category term="TeXt" /><summary type="html"><![CDATA[If you see this page, that means you have setup your site. enjoy! :ghost: :ghost: :ghost: You may want to config the site or writing a post next. Please feel free to create an issue or send me email if you have any questions.]]></summary></entry></feed>
+</code></pre></div></div>
+:ET

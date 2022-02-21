@@ -3,7 +3,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>[BOJ] 알파벳(1987) - Star-sil's Blog</title>
 
-<meta name="description" content="문제BOJ_1987 알파벳문제 설명알파벳으로 이루어진 행렬이 주어지고 말은 상하좌우로 움직일 수 있는데 알파벳은 한번만 지나갈 수 있다. 알파벳을 한번씩 밟으면서 최대로 몇칸 지날 수 있는지 알아내면 된다.문제 해결방문한 즉시 방문했다고 처리하면 추후에 다른 노드들이 방문을 못함 ...">
+<meta name="description" content="문제BOJ_1987 알파벳">
 <link rel="canonical" href="http://localhost:4000/2022/02/20/BOJ1987_%EC%95%8C%ED%8C%8C%EB%B2%B3.html"><link rel="alternate" type="application/rss+xml" title="Star-sil's Blog" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
 
 <meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/assets/browserconfig.xml">
@@ -278,18 +278,24 @@
             <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="[BOJ] 알파벳(1987)"><div class="article__info clearfix"><ul class="left-col menu"><li>
               <a class="button button--secondary button--pill button--sm"
                 href="/archive.html?tag=BOJ">BOJ</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=DFS%2FBFS">DFS/BFS</a>
             </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2022년 02월 20일</span>
             </li></ul></div><meta itemprop="author" content="star-sil"/><meta itemprop="datePublished" content="2022-02-20T00:00:00+00:00">
-    <meta itemprop="keywords" content="BOJ"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
+    <meta itemprop="keywords" content="BOJ,DFS/BFS"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
 <!-- end custom article top snippet -->
 <div class="article__content" itemprop="articleBody"><h2 id="문제">문제</h2>
 
 <p><a href="https://www.acmicpc.net/problem/1986">BOJ_1987 알파벳</a><br /></p>
 
+<!--more-->
+
 <h2 id="문제-설명">문제 설명</h2>
 
-<p>알파벳으로 이루어진 행렬이 주어지고 말은 상하좌우로 움직일 수 있는데 알파벳은 한번만 지나갈 수 있다. 알파벳을 한번씩 밟으면서 최대로 몇칸 지날 수 있는지 알아내면 된다.</p>
+<p>알파벳으로 이루어진 행렬이 주어지고 말은 상하좌우로 움직일 수 있는데 알파벳은 한번만 지나갈 수 있다. <br /> 
+알파벳을 한번씩 밟으면서 최대로 몇칸 지날 수 있는지 알아내면 된다.</p>
 
 <h2 id="문제-해결">문제 해결</h2>
 
