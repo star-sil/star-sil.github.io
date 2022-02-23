@@ -1,0 +1,111 @@
+I"�%<h2 id="문제">문제</h2>
+
+<p><a href="https://www.acmicpc.net/problem/1700">BOJ_1700 멀티탭 스케줄링</a><br /></p>
+
+<!--more-->
+
+<h2 id="문제-이해">문제 이해</h2>
+
+<p>이 문제의 목표는 전기 용품의 플러그를 빼는 횟수를 최소화 하는 것이다.</p>
+
+<p>만약 3개의 구멍이 있는 멀티 탭을 사용할 때 아래의 조건으로 전기 용품의 사용 순서가 주어진다면</p>
+
+<blockquote>
+  <p>키보드(1)</p>
+
+  <p>헤어드라이기(2)</p>
+
+  <p>핸드폰 충전기(3)</p>
+
+  <p>키보드(1)</p>
+
+  <p>헤어드라이기(2)</p>
+
+  <p>디지털 카메라 충전기(4)</p>
+
+</blockquote>
+
+<p>순서대로 3개의 전기 용품을 멀티 탭에 꽂고 마지막 순서인 디지털 카메라 충전기를 꽂기전에 멀티 탭에 꽂힌 전기 용품 중 하나를 빼는것이 최적이므로 한번만 제거 한다.</p>
+
+<h2 id="문제-풀이">문제 풀이</h2>
+
+<p>우선 앞으로 꽂을 전기 용품은 멀티 탭이 비어있거나 멀티 탭에 이미 해당 전기 용품이 꽂힌 경우에는 이미 꽂혀있는 전기 용품을 뺄 필요가 없다. 따라서 조건을 두개로 나누어서 생각해야 한다.</p>
+
+<ul>
+  <li>멀티 탭이 비어있거나 멀티 탭에 이미 해당 전기 용품이 꽂힌 경우
+    <ul>
+      <li>플러그를 제거하지 않고 그냥 넘어간다.</li>
+    </ul>
+  </li>
+  <li>멀티 탭이 비어있지 않고 해당 전기 용품이 꽂히지 않는 경우
+    <ul>
+      <li>꽂혀있는 전기 용품중에 다시 꽂을 일이 없거나 가장 늦게 다시 꽂아야 하는 전기 용품을 뺀다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="코드">코드</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//멀티탭 스케줄링</span>
+<span class="c1">//먼저 플러그가 비어있거나 이미 있는경우를 체크하고 없는 경우에는</span>
+<span class="c1">//꽂을 콘센트가 가장 멀리있거나 없는 플러그를 제거</span>
+<span class="c1">//check max &lt; k 조건문 안쪽에다가 해서 해당 콘센트가 플러그인에 존재해도 check가 안되는 현상이 생겼다.</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">result</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">useArr</span><span class="p">[</span><span class="mi">100</span><span class="p">],</span> <span class="n">plug</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+    <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span> <span class="o">&gt;&gt;</span> <span class="n">K</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">K</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">useArr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">K</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">bool</span> <span class="n">plugin</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">plug</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">plug</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">useArr</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="p">{</span>
+                <span class="n">plug</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">useArr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+                <span class="n">plugin</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">plugin</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+
+        <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">bool</span> <span class="n">check</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">K</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">plug</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">useArr</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+                <span class="p">{</span>
+                    <span class="n">check</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                    <span class="k">if</span><span class="p">(</span><span class="n">max</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="n">max</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
+                        <span class="n">index</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span>
+                    <span class="p">}</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">check</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">max</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+                <span class="n">index</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">plug</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">useArr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="n">result</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">result</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET

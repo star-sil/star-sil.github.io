@@ -1,0 +1,126 @@
+I"�%<h2 id="문제">문제</h2>
+
+<p><a href="https://www.acmicpc.net/problem/1080">BOJ_1080 행렬</a><br /></p>
+
+<!--more-->
+
+<h2 id="문제-이해">문제 이해</h2>
+
+<p>이 문제는 두개의 행렬이 주어지는데 하나의 행렬을 3x3크기의 부분 행렬로 뒤집어서 두 행렬을 같도록 만드는 것이다. 뒤집을때는 3x3크기의 모든 원소를 다 뒤집어야 한다. ( 0 → 1, 1 → 0)</p>
+
+<h2 id="문제-해결">문제 해결</h2>
+
+<p>이 문제를 해결하기 위해서는 먼저 두 행렬을 비교해서 같은 부분과 같지 않은 부분을 0, 1로 표현한 행렬을 만들어야 한다.</p>
+
+<p>예를들면,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3 4
+0000
+0010
+0000
+1001
+1011
+1001
+</code></pre></div></div>
+
+<ul>
+  <li>3x4크기의 행렬 두개(입력값)</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+1001
+1001
+1001
+
+</code></pre></div></div>
+
+<ul>
+  <li>두 행렬을 비교해서 같은 부분과 다른 부분을 표현한 행렬</li>
+</ul>
+
+<p>이런식으로 행렬을 표현할 수 있다.</p>
+
+<p>두개를 비교한 행렬에서 첫번째 원소가 1이고 3x3크기의 부분행렬을 뒤집을 수 있으므로 뒤집을 수 있고 이렇게 계속 반복하게 되면 마지막 처럼 결과가 나올 수 있고 2번 뒤집는게 정답이 된다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0111
+0111
+0111
+</code></pre></div></div>
+
+<p>→</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0111
+0111
+0111
+</code></pre></div></div>
+
+<p>→</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0111
+0111
+0111
+</code></pre></div></div>
+
+<p>→</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0000
+0000
+0000
+</code></pre></div></div>
+
+<p>하지만 여기서 주의할 점이 있다.</p>
+
+<ol>
+  <li>이미 두 행렬이 같은경우 3x3 부분행렬을 사용할 수 없는 경우에도 -1이 아닌 0이 결과로 출력되어야한다.</li>
+  <li>입력값이 0000같이 붙어서 입력되므로 scanf(”%1d”,xx)를 사용해야되므로 ios_base를 사용하면 안된다.</li>
+  <li>바꿔야 하는 원소(1인 원소)가 있는데 3x3크기의 범위를 벗어나서 뒤집을 수 없는경우 -1(바꿀수 없음)을 출력해야한다.</li>
+</ol>
+
+<h2 id="코드">코드</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//행렬</span>
+<span class="c1">// int 변수 1과 0을 비트연산 &amp;을 하게되면 0001 &amp; 0000 =&gt; 0000</span>
+<span class="c1">// 반대로 바꾸기 위해서는 xor연산을 해야한다.</span>
+<span class="c1">// 반례에서 막혔다 + ios_base를 사용하면 scanf를 사용하면 안된다. </span>
+<span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="mi">50</span><span class="p">][</span><span class="mi">50</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">N</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="n">cnt</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span> <span class="o">&gt;&gt;</span> <span class="n">M</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">M</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+            <span class="n">scanf</span><span class="p">(</span><span class="s">"%1d"</span><span class="p">,</span><span class="o">&amp;</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">M</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">){</span>
+           <span class="kt">int</span> <span class="n">tmp</span><span class="p">;</span> <span class="n">scanf</span><span class="p">(</span><span class="s">"%1d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tmp</span><span class="p">);</span>
+           <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">^=</span> <span class="n">tmp</span><span class="p">;</span> <span class="c1">//기존 행렬과 다른 경우 1 같은경우 0</span>
+        <span class="p">}</span>  
+    
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">M</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]){</span>
+                <span class="c1">//바꿔야 하지만 범위가 넘어가는 경우 안된다고 판단</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">&gt;=</span> <span class="n">N</span> <span class="o">||</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">&gt;=</span> <span class="n">M</span><span class="p">){</span>
+                    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+                    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+                <span class="p">}</span>
+
+                <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">){</span>
+                    <span class="n">arr</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">^=</span> <span class="mi">1</span><span class="p">;</span>
+                    <span class="n">arr</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">^=</span> <span class="mi">1</span><span class="p">;</span>
+                    <span class="n">arr</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span> <span class="o">^=</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="p">}</span>
+
+                <span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">cnt</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET
