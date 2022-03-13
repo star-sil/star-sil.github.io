@@ -1,5 +1,114 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="ko" /><updated>2022-02-23T16:18:32+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Star-sil’s Blog</title><subtitle>Your Site Description
-</subtitle><author><name>star-sil</name><email>kimse9811@naver.com</email></author><entry><title type="html">[BOJ] 알파벳(1987)</title><link href="http://localhost:4000/2022/02/20/BOJ1987_%EC%95%8C%ED%8C%8C%EB%B2%B3.html" rel="alternate" type="text/html" title="[BOJ] 알파벳(1987)" /><published>2022-02-20T00:00:00+00:00</published><updated>2022-02-20T00:00:00+00:00</updated><id>http://localhost:4000/2022/02/20/BOJ1987_%EC%95%8C%ED%8C%8C%EB%B2%B3</id><content type="html" xml:base="http://localhost:4000/2022/02/20/BOJ1987_%EC%95%8C%ED%8C%8C%EB%B2%B3.html"><![CDATA[<h2 id="문제">문제</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="ko" /><updated>2022-03-13T04:31:06+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Star-sil’s Blog</title><subtitle>Your Site Description
+</subtitle><author><name>star-sil</name><email>kimse9811@naver.com</email></author><entry><title type="html">[BOJ] 공유기 설치(2110)</title><link href="http://0.0.0.0:4000/2022/03/13/BOJ2110_%EA%B3%B5%EC%9C%A0%EA%B8%B0%EC%84%A4%EC%B9%98.html" rel="alternate" type="text/html" title="[BOJ] 공유기 설치(2110)" /><published>2022-03-13T00:00:00+00:00</published><updated>2022-03-13T00:00:00+00:00</updated><id>http://0.0.0.0:4000/2022/03/13/BOJ2110_%EA%B3%B5%EC%9C%A0%EA%B8%B0%EC%84%A4%EC%B9%98</id><content type="html" xml:base="http://0.0.0.0:4000/2022/03/13/BOJ2110_%EA%B3%B5%EC%9C%A0%EA%B8%B0%EC%84%A4%EC%B9%98.html"><![CDATA[<h2 id="문제">문제</h2>
+
+<p><a href="https://www.acmicpc.net/problem/2110">BOJ_2110 공유기 설치</a><br /></p>
+
+<!--more-->
+
+<h2 id="문제-이해">문제 이해</h2>
+
+<p>이 문제를 이해하는데 오랜 시간이 걸렸다. 내가 문제에 잘못 접근했기 때문인데 이분탐색을 적용해야되는 것은 알았지만 집의 위치에 이분탐색을 적용하려 했기 때문에 문제를 해결하지 못했다. <br />
+이 문제는 이분탐색을 적용해야되는 문제이긴 하지만 <strong>최적의 집의 위치를 찾는데 사용하는 것이 아니라 최적의 공유기 사이의 거리를 구하는데</strong> 사용해야한다. 따라서 최소거리와 최대거리를 구하고, 두 거리 사이의 거리중에서 최적의 거리를 찾아야 한다. <br />
+추가로 공유기 사이의 거리가 멀어질수록 설치 가능한 공유기의 개수는 적어진다.</p>
+
+<h2 id="문제-풀이">문제 풀이</h2>
+
+<p>공유기 사이의 거리에 따른 설치 가능한 공유기의 갯수를 구하는 것으로 문제를 풀어야한다. <br /> 공유기 사이의 거리가 멀어질수록 설치 가능한 공유기의 개수는 적어지므로 이분탐색을 통해 설치 가능한 공유기 갯수에 맞는 가장 큰 공유기 사이의 거리를 구한다.</p>
+
+<h2 id="코드">코드</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="n">C</span> <span class="p">,</span><span class="n">homes</span><span class="p">[</span><span class="mi">200000</span><span class="p">];</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span> <span class="o">&gt;&gt;</span> <span class="n">C</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">homes</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="n">sort</span><span class="p">(</span><span class="n">homes</span><span class="p">,</span><span class="n">homes</span> <span class="o">+</span> <span class="n">N</span><span class="p">);</span>
+
+    <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">homes</span><span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">){</span>
+        <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">start</span> <span class="o">=</span> <span class="n">homes</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">homes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">start</span> <span class="o">&gt;=</span> <span class="n">mid</span><span class="p">){</span>
+                <span class="n">start</span> <span class="o">=</span> <span class="n">homes</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+                <span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">cnt</span> <span class="o">&lt;</span> <span class="n">C</span><span class="p">){</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span><span class="p">{</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> 
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">right</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>]]></content><author><name>star-sil</name><email>kimse9811@naver.com</email></author><category term="BOJ" /><summary type="html"><![CDATA[문제 BOJ_2110 공유기 설치]]></summary></entry><entry><title type="html">[BOJ] 전화번호 목록(5052)</title><link href="http://0.0.0.0:4000/2022/03/06/BOJ5052_%EC%A0%84%ED%99%94%EB%B2%88%ED%98%B8%EB%AA%A9%EB%A1%9D.html" rel="alternate" type="text/html" title="[BOJ] 전화번호 목록(5052)" /><published>2022-03-06T00:00:00+00:00</published><updated>2022-03-06T00:00:00+00:00</updated><id>http://0.0.0.0:4000/2022/03/06/BOJ5052_%EC%A0%84%ED%99%94%EB%B2%88%ED%98%B8%EB%AA%A9%EB%A1%9D</id><content type="html" xml:base="http://0.0.0.0:4000/2022/03/06/BOJ5052_%EC%A0%84%ED%99%94%EB%B2%88%ED%98%B8%EB%AA%A9%EB%A1%9D.html"><![CDATA[<h2 id="문제">문제</h2>
+
+<p><a href="https://www.acmicpc.net/problem/5052">BOJ_5052 전화번호 목록</a><br /></p>
+
+<!--more-->
+
+<h2 id="문제-이해">문제 이해</h2>
+
+<p>전화번호들이 주어지면 전화번호들이 서로 일관성을 유지하고 있는지 알아보는 것이다.</p>
+
+<p>일관성을 유지하는 기준은 하나의 번호가 다른 번호의 접두어인 경우가 없는 경우다.
+예를들면 911, 91125426이 주어지면 서로 일관성을 유지하지 않는다.</p>
+
+<h2 id="문제-풀이">문제 풀이</h2>
+
+<p>각 전화번호를 비교하기 쉽도록 입력을 숫자가 아닌 문자열로 입력받고 정렬을 했다.</p>
+
+<p>그러면 특징이 나타나게 되는데 바로 한 문자열이 다음 문자열에 속하지 않으면 이후 모든 문자열에 대해 속하지 않는다는 것이다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/70811575/156925607-7d1e0ddc-0229-4de2-b177-cb0b5a43e35e.jpeg" alt="BOJ5052" /></p>
+
+<p>따라서 일관성을 유지한다는 의미는 각각의 모든 문자열이 다음 문자열에 속하지 않는다는 것을 의미한다. 만약 한 단어라도 다음 문자열에 속한다고 하면 일관성을 유지하지 않는다고 볼 수 있다.</p>
+
+<h2 id="코드">코드</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="n">string</span> <span class="n">callNum</span><span class="p">[</span><span class="mi">10000</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">T</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">;</span> <span class="o">++</span><span class="n">t</span><span class="p">){</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span><span class="p">;</span> <span class="kt">bool</span> <span class="n">sign</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">callNum</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="p">}</span>
+
+        <span class="n">sort</span><span class="p">(</span><span class="n">callNum</span><span class="p">,</span><span class="n">callNum</span><span class="o">+</span><span class="n">N</span><span class="p">);</span>
+        
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">callNum</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">callNum</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">].</span><span class="n">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">callNum</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">())){</span>
+                <span class="n">sign</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"NO"</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">sign</span><span class="p">)</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"YES"</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>]]></content><author><name>star-sil</name><email>kimse9811@naver.com</email></author><category term="BOJ" /><summary type="html"><![CDATA[문제 BOJ_5052 전화번호 목록]]></summary></entry><entry><title type="html">[BOJ] 알파벳(1987)</title><link href="http://0.0.0.0:4000/2022/02/20/BOJ1987_%EC%95%8C%ED%8C%8C%EB%B2%B3.html" rel="alternate" type="text/html" title="[BOJ] 알파벳(1987)" /><published>2022-02-20T00:00:00+00:00</published><updated>2022-02-20T00:00:00+00:00</updated><id>http://0.0.0.0:4000/2022/02/20/BOJ1987_%EC%95%8C%ED%8C%8C%EB%B2%B3</id><content type="html" xml:base="http://0.0.0.0:4000/2022/02/20/BOJ1987_%EC%95%8C%ED%8C%8C%EB%B2%B3.html"><![CDATA[<h2 id="문제">문제</h2>
 
 <p><a href="https://www.acmicpc.net/problem/1986">BOJ_1987 알파벳</a><br /></p>
 
@@ -54,7 +163,7 @@
 
     <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">result</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div></div>]]></content><author><name>star-sil</name><email>kimse9811@naver.com</email></author><category term="BOJ" /><summary type="html"><![CDATA[문제 BOJ_1987 알파벳]]></summary></entry><entry><title type="html">[BOJ] 단어수학(1339)</title><link href="http://localhost:4000/2022/02/15/BOJ1339_%EB%8B%A8%EC%96%B4%EC%88%98%ED%95%99.html" rel="alternate" type="text/html" title="[BOJ] 단어수학(1339)" /><published>2022-02-15T00:00:00+00:00</published><updated>2022-02-15T00:00:00+00:00</updated><id>http://localhost:4000/2022/02/15/BOJ1339_%EB%8B%A8%EC%96%B4%EC%88%98%ED%95%99</id><content type="html" xml:base="http://localhost:4000/2022/02/15/BOJ1339_%EB%8B%A8%EC%96%B4%EC%88%98%ED%95%99.html"><![CDATA[<h2 id="문제">문제</h2>
+</code></pre></div></div>]]></content><author><name>star-sil</name><email>kimse9811@naver.com</email></author><category term="BOJ" /><summary type="html"><![CDATA[문제 BOJ_1987 알파벳]]></summary></entry><entry><title type="html">[BOJ] 단어수학(1339)</title><link href="http://0.0.0.0:4000/2022/02/15/BOJ1339_%EB%8B%A8%EC%96%B4%EC%88%98%ED%95%99.html" rel="alternate" type="text/html" title="[BOJ] 단어수학(1339)" /><published>2022-02-15T00:00:00+00:00</published><updated>2022-02-15T00:00:00+00:00</updated><id>http://0.0.0.0:4000/2022/02/15/BOJ1339_%EB%8B%A8%EC%96%B4%EC%88%98%ED%95%99</id><content type="html" xml:base="http://0.0.0.0:4000/2022/02/15/BOJ1339_%EB%8B%A8%EC%96%B4%EC%88%98%ED%95%99.html"><![CDATA[<h2 id="문제">문제</h2>
 
 <p><a href="https://www.acmicpc.net/problem/1339">BOJ_1339 단어수학</a><br /></p>
 
@@ -88,10 +197,7 @@ AAA</p>
 
 <h2 id="코드">코드</h2>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//단어수학</span>
-<span class="c1">//문자 연산 기능 숙지 https://dojang.io/mod/page/view.php?id=62</span>
-<span class="c1">//문자열 입력 기능 및 활용 숙지(strlen)</span>
-<span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
 </span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
 <span class="kt">char</span> <span class="n">words</span><span class="p">[</span><span class="mi">10</span><span class="p">][</span><span class="mi">10</span><span class="p">];</span>
@@ -128,7 +234,7 @@ AAA</p>
 
     <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">result</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div></div>]]></content><author><name>star-sil</name><email>kimse9811@naver.com</email></author><category term="BOJ" /><summary type="html"><![CDATA[문제 BOJ_1339 단어수학]]></summary></entry><entry><title type="html">[BOJ] 행렬(1080)</title><link href="http://localhost:4000/2022/02/04/BOJ1080_%ED%96%89%EB%A0%AC.html" rel="alternate" type="text/html" title="[BOJ] 행렬(1080)" /><published>2022-02-04T00:00:00+00:00</published><updated>2022-02-04T00:00:00+00:00</updated><id>http://localhost:4000/2022/02/04/BOJ1080_%ED%96%89%EB%A0%AC</id><content type="html" xml:base="http://localhost:4000/2022/02/04/BOJ1080_%ED%96%89%EB%A0%AC.html"><![CDATA[<h2 id="문제">문제</h2>
+</code></pre></div></div>]]></content><author><name>star-sil</name><email>kimse9811@naver.com</email></author><category term="BOJ" /><summary type="html"><![CDATA[문제 BOJ_1339 단어수학]]></summary></entry><entry><title type="html">[BOJ] 행렬(1080)</title><link href="http://0.0.0.0:4000/2022/02/04/BOJ1080_%ED%96%89%EB%A0%AC.html" rel="alternate" type="text/html" title="[BOJ] 행렬(1080)" /><published>2022-02-04T00:00:00+00:00</published><updated>2022-02-04T00:00:00+00:00</updated><id>http://0.0.0.0:4000/2022/02/04/BOJ1080_%ED%96%89%EB%A0%AC</id><content type="html" xml:base="http://0.0.0.0:4000/2022/02/04/BOJ1080_%ED%96%89%EB%A0%AC.html"><![CDATA[<h2 id="문제">문제</h2>
 
 <p><a href="https://www.acmicpc.net/problem/1080">BOJ_1080 행렬</a><br /></p>
 
@@ -208,11 +314,7 @@ AAA</p>
 
 <h2 id="코드">코드</h2>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//행렬</span>
-<span class="c1">// int 변수 1과 0을 비트연산 &amp;을 하게되면 0001 &amp; 0000 =&gt; 0000</span>
-<span class="c1">// 반대로 바꾸기 위해서는 xor연산을 해야한다.</span>
-<span class="c1">// 반례에서 막혔다 + ios_base를 사용하면 scanf를 사용하면 안된다. </span>
-<span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
 </span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
 <span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="mi">50</span><span class="p">][</span><span class="mi">50</span><span class="p">];</span>
@@ -252,7 +354,7 @@ AAA</p>
     <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">cnt</span><span class="p">;</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div></div>]]></content><author><name>star-sil</name><email>kimse9811@naver.com</email></author><category term="BOJ" /><summary type="html"><![CDATA[문제 BOJ_1080 행렬]]></summary></entry><entry><title type="html">[BOJ] 책 나눠주기(9576)</title><link href="http://localhost:4000/2022/01/24/BOJ9576_%EC%B1%85%EB%82%98%EB%88%A0%EC%A3%BC%EA%B8%B0.html" rel="alternate" type="text/html" title="[BOJ] 책 나눠주기(9576)" /><published>2022-01-24T00:00:00+00:00</published><updated>2022-01-24T00:00:00+00:00</updated><id>http://localhost:4000/2022/01/24/BOJ9576_%EC%B1%85%EB%82%98%EB%88%A0%EC%A3%BC%EA%B8%B0</id><content type="html" xml:base="http://localhost:4000/2022/01/24/BOJ9576_%EC%B1%85%EB%82%98%EB%88%A0%EC%A3%BC%EA%B8%B0.html"><![CDATA[<h2 id="문제">문제</h2>
+</code></pre></div></div>]]></content><author><name>star-sil</name><email>kimse9811@naver.com</email></author><category term="BOJ" /><summary type="html"><![CDATA[문제 BOJ_1080 행렬]]></summary></entry><entry><title type="html">[BOJ] 책 나눠주기(9576)</title><link href="http://0.0.0.0:4000/2022/01/24/BOJ9576_%EC%B1%85%EB%82%98%EB%88%A0%EC%A3%BC%EA%B8%B0.html" rel="alternate" type="text/html" title="[BOJ] 책 나눠주기(9576)" /><published>2022-01-24T00:00:00+00:00</published><updated>2022-01-24T00:00:00+00:00</updated><id>http://0.0.0.0:4000/2022/01/24/BOJ9576_%EC%B1%85%EB%82%98%EB%88%A0%EC%A3%BC%EA%B8%B0</id><content type="html" xml:base="http://0.0.0.0:4000/2022/01/24/BOJ9576_%EC%B1%85%EB%82%98%EB%88%A0%EC%A3%BC%EA%B8%B0.html"><![CDATA[<h2 id="문제">문제</h2>
 
 <p><a href="https://www.acmicpc.net/problem/9576">BOJ_9576 책 나눠주기</a><br /></p>
 
@@ -268,13 +370,7 @@ AAA</p>
 
 <h2 id="코드">코드</h2>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//책 나눠주기</span>
-<span class="c1">//반례를 찾지 못함</span>
-<span class="c1">//테스트 케이스에서 초기화를 시켜주지 못했다.</span>
-<span class="c1">//visited 배열의 길이가 1000이 아니라 1001이되어야한다.(index가 1부터 시작)</span>
-<span class="c1">//웬만하면 전역변수로 선언하는게 좋다. 속도 증가</span>
-<span class="c1">//mamset에서 size 잘못 입력해서 사이즈 잘못 초기화했다.</span>
-<span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
 </span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
 <span class="k">typedef</span> <span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ii</span><span class="p">;</span>
@@ -317,7 +413,7 @@ AAA</p>
     <span class="p">}</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div></div>]]></content><author><name>star-sil</name><email>kimse9811@naver.com</email></author><category term="BOJ" /><summary type="html"><![CDATA[문제 BOJ_9576 책 나눠주기]]></summary></entry><entry><title type="html">[BOJ] 멀티탭 스케줄링(1700)</title><link href="http://localhost:4000/2022/01/19/BOJ1700_%EB%A9%80%ED%8B%B0%ED%83%AD%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81.html" rel="alternate" type="text/html" title="[BOJ] 멀티탭 스케줄링(1700)" /><published>2022-01-19T00:00:00+00:00</published><updated>2022-01-19T00:00:00+00:00</updated><id>http://localhost:4000/2022/01/19/BOJ1700_%EB%A9%80%ED%8B%B0%ED%83%AD%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81</id><content type="html" xml:base="http://localhost:4000/2022/01/19/BOJ1700_%EB%A9%80%ED%8B%B0%ED%83%AD%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81.html"><![CDATA[<h2 id="문제">문제</h2>
+</code></pre></div></div>]]></content><author><name>star-sil</name><email>kimse9811@naver.com</email></author><category term="BOJ" /><summary type="html"><![CDATA[문제 BOJ_9576 책 나눠주기]]></summary></entry><entry><title type="html">[BOJ] 멀티탭 스케줄링(1700)</title><link href="http://0.0.0.0:4000/2022/01/19/BOJ1700_%EB%A9%80%ED%8B%B0%ED%83%AD%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81.html" rel="alternate" type="text/html" title="[BOJ] 멀티탭 스케줄링(1700)" /><published>2022-01-19T00:00:00+00:00</published><updated>2022-01-19T00:00:00+00:00</updated><id>http://0.0.0.0:4000/2022/01/19/BOJ1700_%EB%A9%80%ED%8B%B0%ED%83%AD%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81</id><content type="html" xml:base="http://0.0.0.0:4000/2022/01/19/BOJ1700_%EB%A9%80%ED%8B%B0%ED%83%AD%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81.html"><![CDATA[<h2 id="문제">문제</h2>
 
 <p><a href="https://www.acmicpc.net/problem/1700">BOJ_1700 멀티탭 스케줄링</a><br /></p>
 
@@ -365,12 +461,7 @@ AAA</p>
 
 <h2 id="코드">코드</h2>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//멀티탭 스케줄링</span>
-<span class="c1">//먼저 플러그가 비어있거나 이미 있는경우를 체크하고 없는 경우에는</span>
-<span class="c1">//꽂을 콘센트가 가장 멀리있거나 없는 플러그를 제거</span>
-<span class="c1">//check max &lt; k 조건문 안쪽에다가 해서 해당 콘센트가 플러그인에 존재해도 check가 안되는 현상이 생겼다.</span>
-
-<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">result</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">useArr</span><span class="p">[</span><span class="mi">100</span><span class="p">],</span> <span class="n">plug</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>

@@ -1,4 +1,4 @@
-I"�%<h2 id="문제">문제</h2>
+I"$<h2 id="문제">문제</h2>
 
 <p><a href="https://www.acmicpc.net/problem/1700">BOJ_1700 멀티탭 스케줄링</a><br /></p>
 
@@ -46,12 +46,7 @@
 
 <h2 id="코드">코드</h2>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//멀티탭 스케줄링</span>
-<span class="c1">//먼저 플러그가 비어있거나 이미 있는경우를 체크하고 없는 경우에는</span>
-<span class="c1">//꽂을 콘센트가 가장 멀리있거나 없는 플러그를 제거</span>
-<span class="c1">//check max &lt; k 조건문 안쪽에다가 해서 해당 콘센트가 플러그인에 존재해도 check가 안되는 현상이 생겼다.</span>
-
-<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">result</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">useArr</span><span class="p">[</span><span class="mi">100</span><span class="p">],</span> <span class="n">plug</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>

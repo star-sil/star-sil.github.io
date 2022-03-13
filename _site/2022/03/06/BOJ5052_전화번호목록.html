@@ -1,10 +1,10 @@
 <!DOCTYPE html><html lang="ko">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>[BOJ] 단어수학(1339) - Star-sil's Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>[BOJ] 전화번호 목록(5052) - Star-sil's Blog</title>
 
-<meta name="description" content="문제BOJ_1339 단어수학">
-<link rel="canonical" href="http://0.0.0.0:4000/2022/02/15/BOJ1339_%E1%84%83%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%A5%E1%84%89%E1%85%AE%E1%84%92%E1%85%A1%E1%86%A8.html"><link rel="alternate" type="application/rss+xml" title="Star-sil's Blog" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
+<meta name="description" content="문제BOJ_5052 전화번호 목록">
+<link rel="canonical" href="http://0.0.0.0:4000/2022/03/06/BOJ5052_%EC%A0%84%ED%99%94%EB%B2%88%ED%98%B8%EB%AA%A9%EB%A1%9D.html"><link rel="alternate" type="application/rss+xml" title="Star-sil's Blog" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
 
 <meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/assets/browserconfig.xml">
 
@@ -271,95 +271,79 @@
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>[BOJ] 단어수학(1339)</h1></header><span class="split-space">&nbsp;</span>
+<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>[BOJ] 전화번호 목록(5052)</h1></header><span class="split-space">&nbsp;</span>
           <a class="edit-on-github"
             title="Github에서 확인하기"
-            href="https://github.com/star-sil/star-sil.github.io/tree/master/_posts/BOJ/2022-02-15-BOJ1339_단어수학.md">
-            <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="[BOJ] 단어수학(1339)"><div class="article__info clearfix"><ul class="left-col menu"><li>
+            href="https://github.com/star-sil/star-sil.github.io/tree/master/_posts/BOJ/2022-03-06-BOJ5052_전화번호목록.MD">
+            <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="[BOJ] 전화번호 목록(5052)"><div class="article__info clearfix"><ul class="left-col menu"><li>
               <a class="button button--secondary button--pill button--sm"
                 href="/archive.html?tag=BOJ">BOJ</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2022년 02월 15일</span>
-            </li></ul></div><meta itemprop="author" content="star-sil"/><meta itemprop="datePublished" content="2022-02-15T00:00:00+00:00">
+            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2022년 03월 06일</span>
+            </li></ul></div><meta itemprop="author" content="star-sil"/><meta itemprop="datePublished" content="2022-03-06T00:00:00+00:00">
     <meta itemprop="keywords" content="BOJ"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
 <!-- end custom article top snippet -->
 <div class="article__content" itemprop="articleBody"><h2 id="문제">문제</h2>
 
-<p><a href="https://www.acmicpc.net/problem/1339">BOJ_1339 단어수학</a><br /></p>
+<p><a href="https://www.acmicpc.net/problem/5052">BOJ_5052 전화번호 목록</a><br /></p>
 
 <!--more-->
 
-<h2 id="문제-내용">문제 내용</h2>
+<h2 id="문제-이해">문제 이해</h2>
 
-<p>민식이는 수학학원에서 단어 수학 문제를 푸는 숙제를 받았다.</p>
+<p>전화번호들이 주어지면 전화번호들이 서로 일관성을 유지하고 있는지 알아보는 것이다.</p>
 
-<p>단어 수학 문제는 N개의 단어로 이루어져 있으며, 각 단어는 알파벳 대문자로만 이루어져 있다. 이때, 각 알파벳 대문자를 0부터 9까지의 숫자 중 하나로 바꿔서 N개의 수를 합하는 문제이다. 같은 알파벳은 같은 숫자로 바꿔야 하며, 두 개 이상의 알파벳이 같은 숫자로 바뀌어지면 안 된다.</p>
+<p>일관성을 유지하는 기준은 하나의 번호가 다른 번호의 접두어인 경우가 없는 경우다.
+예를들면 911, 91125426이 주어지면 서로 일관성을 유지하지 않는다.</p>
 
-<p>예를 들어, GCF + ACDEB를 계산한다고 할 때, A = 9, B = 4, C = 8, D = 6, E = 5, F = 3, G = 7로 결정한다면, 두 수의 합은 99437이 되어서 최대가 될 것이다.</p>
+<h2 id="문제-풀이">문제 풀이</h2>
 
-<p>N개의 단어가 주어졌을 때, 그 수의 합을 최대로 만드는 프로그램을 작성하시오.</p>
+<p>각 전화번호를 비교하기 쉽도록 입력을 숫자가 아닌 문자열로 입력받고 정렬을 했다.</p>
 
-<blockquote>
-  <p>입력<br />
-2<br />
-AAA<br />
-AAA</p>
-</blockquote>
+<p>그러면 특징이 나타나게 되는데 바로 한 문자열이 다음 문자열에 속하지 않으면 이후 모든 문자열에 대해 속하지 않는다는 것이다.</p>
 
-<blockquote>
-  <p>출력<br />
-1998</p>
-</blockquote>
+<p><img src="https://user-images.githubusercontent.com/70811575/156925607-7d1e0ddc-0229-4de2-b177-cb0b5a43e35e.jpeg" alt="BOJ5052" /></p>
 
-<h2 id="문제-해결">문제 해결</h2>
-
-<p>문자열의 각 알파벳이 자리하고 있는 자리수를 파악하여 모두 더한 다음 큰 값을 가지고 있는 문자를 차례대로 나열하여 9~0을 배정한다.</p>
+<p>따라서 일관성을 유지한다는 의미는 각각의 모든 문자열이 다음 문자열에 속하지 않는다는 것을 의미한다. 만약 한 단어라도 다음 문자열에 속한다고 하면 일관성을 유지하지 않는다고 볼 수 있다.</p>
 
 <h2 id="코드">코드</h2>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
-</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
-<span class="kt">char</span> <span class="n">words</span><span class="p">[</span><span class="mi">10</span><span class="p">][</span><span class="mi">10</span><span class="p">];</span>
-<span class="kt">int</span> <span class="n">alpha</span><span class="p">[</span><span class="mi">26</span><span class="p">],</span> <span class="n">result</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">len</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
-
-<span class="kt">bool</span> <span class="nf">DESC</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">){</span>
-    <span class="k">return</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="n">string</span> <span class="n">callNum</span><span class="p">[</span><span class="mi">10000</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">;</span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
-    
-    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
-        <span class="c1">//문자열 입력 가능</span>
-        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-        <span class="c1">//문자열의 길이 파악 가능</span>
-        <span class="n">len</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-    <span class="p">}</span>
-
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
-        <span class="kt">int</span> <span class="n">cal</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">len</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">j</span><span class="p">){</span>
-            <span class="c1">//문자 연산을 통해 인덱스를 지정할 수 있다.</span>
-            <span class="n">alpha</span><span class="p">[</span><span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="sc">'A'</span><span class="p">]</span> <span class="o">+=</span> <span class="n">cal</span><span class="p">;</span>
-            <span class="n">cal</span> <span class="o">*=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">T</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">;</span> <span class="o">++</span><span class="n">t</span><span class="p">){</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span><span class="p">;</span> <span class="kt">bool</span> <span class="n">sign</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">callNum</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
         <span class="p">}</span>
+
+        <span class="n">sort</span><span class="p">(</span><span class="n">callNum</span><span class="p">,</span><span class="n">callNum</span><span class="o">+</span><span class="n">N</span><span class="p">);</span>
+        
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">callNum</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">callNum</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">].</span><span class="n">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">callNum</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">())){</span>
+                <span class="n">sign</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"NO"</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">sign</span><span class="p">)</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"YES"</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
     <span class="p">}</span>
-
-    <span class="n">sort</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">alpha</span><span class="o">+</span><span class="mi">26</span><span class="p">,</span> <span class="n">DESC</span><span class="p">);</span>
-
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
-        <span class="n">result</span> <span class="o">+=</span> <span class="n">alpha</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">9</span> <span class="o">-</span> <span class="n">i</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">result</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></div>
-</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2022-02-15T00:00:00+00:00"><!-- start custom article footer snippet -->
+</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2022-03-06T00:00:00+00:00"><!-- start custom article footer snippet -->
 
 <!-- end custom article footer snippet -->
 </footer>
-<div class="article__section-navigator clearfix"><div class="previous"><span>이전</span><a href="/2022/02/04/BOJ1080_%E1%84%92%E1%85%A2%E1%86%BC%E1%84%85%E1%85%A7%E1%86%AF.html">[BOJ] 행렬(1080)</a></div><div class="next"><span>다음</span><a href="/2022/02/20/BOJ1987_%EC%95%8C%ED%8C%8C%EB%B2%B3.html">[BOJ] 알파벳(1987)</a></div></div></div>
+<div class="article__section-navigator clearfix"><div class="previous"><span>이전</span><a href="/2022/02/20/BOJ1987_%EC%95%8C%ED%8C%8C%EB%B2%B3.html">[BOJ] 알파벳(1987)</a></div><div class="next"><span>다음</span><a href="/2022/03/13/BOJ2110_%EA%B3%B5%EC%9C%A0%EA%B8%B0%EC%84%A4%EC%B9%98.html">[BOJ] 공유기 설치(2110)</a></div></div></div>
 
 </div>
 

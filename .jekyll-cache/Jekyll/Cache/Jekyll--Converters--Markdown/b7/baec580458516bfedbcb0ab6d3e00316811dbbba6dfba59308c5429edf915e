@@ -1,0 +1,57 @@
+I"�<h2 id="문제">문제</h2>
+
+<p><a href="https://www.acmicpc.net/problem/5052">BOJ_5052 전화번호 목록</a><br /></p>
+
+<!--more-->
+
+<h2 id="문제-이해">문제 이해</h2>
+
+<p>전화번호들이 주어지면 전화번호들이 서로 일관성을 유지하고 있는지 알아보는 것이다.</p>
+
+<p>일관성을 유지하는 기준은 하나의 번호가 다른 번호의 접두어인 경우가 없는 경우다.
+예를들면 911, 91125426이 주어지면 서로 일관성을 유지하지 않는다.</p>
+
+<h2 id="문제-풀이">문제 풀이</h2>
+
+<p>각 전화번호를 비교하기 쉽도록 입력을 숫자가 아닌 문자열로 입력받고 정렬을 했다.</p>
+
+<p>그러면 특징이 나타나게 되는데 바로 한 문자열이 다음 문자열에 속하지 않으면 이후 모든 문자열에 대해 속하지 않는다는 것이다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/70811575/156925607-7d1e0ddc-0229-4de2-b177-cb0b5a43e35e.jpeg" alt="BOJ5052" /></p>
+
+<p>따라서 일관성을 유지한다는 의미는 각각의 모든 문자열이 다음 문자열에 속하지 않는다는 것을 의미한다. 만약 한 단어라도 다음 문자열에 속한다고 하면 일관성을 유지하지 않는다고 볼 수 있다.</p>
+
+<h2 id="코드">코드</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="n">string</span> <span class="n">callNum</span><span class="p">[</span><span class="mi">10000</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">T</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">;</span> <span class="o">++</span><span class="n">t</span><span class="p">){</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span><span class="p">;</span> <span class="kt">bool</span> <span class="n">sign</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">callNum</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="p">}</span>
+
+        <span class="n">sort</span><span class="p">(</span><span class="n">callNum</span><span class="p">,</span><span class="n">callNum</span><span class="o">+</span><span class="n">N</span><span class="p">);</span>
+        
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">callNum</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">callNum</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">].</span><span class="n">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">callNum</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">())){</span>
+                <span class="n">sign</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"NO"</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">sign</span><span class="p">)</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"YES"</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET
